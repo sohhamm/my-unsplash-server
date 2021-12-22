@@ -1,0 +1,21 @@
+{
+  "name": "my-unsplash-server",
+  "version": "0.0.1",
+  "license": "MIT",
+  "packageManager": "yarn@3.1.1",
+  "main": "src/index.js",
+  "type": "module",
+  "engine": {
+    "node": "17.3.0",
+    "npm": "8.3.0"
+  },
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15"
+  }
+}
