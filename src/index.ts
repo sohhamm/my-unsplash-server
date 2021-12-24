@@ -24,7 +24,7 @@ app.get("/", (_, res) => {
 });
 
 // * all routes
-app.use("/api/photo", photoRoutes);
+app.use("/api/photos", photoRoutes);
 
 // main function
 (async () => {
