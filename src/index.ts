@@ -1,16 +1,16 @@
 import "reflect-metadata";
-import express from "express";
+import express, { Express } from "express";
 import dotenv from "dotenv";
-import typeorm from "typeorm";
+import helmet from "helmet";
 import { photoRoutes } from "./routes/index";
-
-const { createConnection } = typeorm;
+import { connectDB } from "./db";
 
 dotenv.config();
 
-const app = express();
+const app: Express = express();
 const PORT = process.env.PORT || 9000;
 
+app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -22,7 +22,7 @@ app.use("/api/photo", photoRoutes);
 
 (async () => {
   try {
-    await createConnection();
+    await connectDB();
     console.log("🚀 connected to the database...");
     app.listen(PORT, () => {
       console.log(`🔥 server listening at http://localhost:${PORT}`);

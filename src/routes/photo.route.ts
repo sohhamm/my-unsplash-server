@@ -1,5 +1,4 @@
-import express, { Request, Response } from "express";
-import { items } from "../constants/index";
+import express from "express";
 import { addPhoto, getAllPhotos } from "../controllers/photo.controller";
 
 const router = express.Router();

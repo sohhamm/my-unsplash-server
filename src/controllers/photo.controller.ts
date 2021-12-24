@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 
-export const getAllPhotos = (req: Request, res: Response) => {
+export const getAllPhotos = (_req: Request, res: Response) => {
   //if no photos in db then send random urls
 
   res.json({ name: "soham" });
