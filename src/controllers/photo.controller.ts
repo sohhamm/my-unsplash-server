@@ -42,3 +42,23 @@ export const addPhoto = async (req: Request, res: Response) => {
     res.status(400).json({ err });
   }
 };
+
+export const deletePhoto = async (req: Request, res: Response) => {
+  try {
+    const { label } = req.params;
+    if (!label) {
+      res.status(400).json({ msg: "no label provided to delete photo" });
+    }
+
+    const delPhoto = await Photo.findOne({ label });
+
+    console.log(delPhoto);
+
+    if (!delPhoto) {
+      res.status(400).json({ msg: "photo does not exist" });
+    }
+    await delPhoto!.remove();
+  } catch (err) {
+    res.status(400).json({ err });
+  }
+};

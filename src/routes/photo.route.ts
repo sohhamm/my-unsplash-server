@@ -7,6 +7,6 @@ const router = express.Router();
 
 router.route("/").get(getAllPhotos).post(addPhoto);
 
-router.route("/:id").get().put().delete();
+router.route("/:label").get().put().delete();
 
 export { router };
