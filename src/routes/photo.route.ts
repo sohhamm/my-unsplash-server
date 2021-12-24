@@ -1,5 +1,9 @@
 import express from "express";
-import { addPhoto, getAllPhotos } from "../controllers/photo.controller";
+import {
+  addPhoto,
+  deletePhoto,
+  getAllPhotos,
+} from "../controllers/photo.controller";
 
 const router = express.Router();
 
@@ -7,6 +11,6 @@ const router = express.Router();
 
 router.route("/").get(getAllPhotos).post(addPhoto);
 
-router.route("/:label").get().put().delete();
+router.route("/:id").delete(deletePhoto);
 
 export { router };

@@ -1,8 +1,11 @@
-import { BaseEntity, Column, Entity, PrimaryColumn } from "typeorm";
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Photo extends BaseEntity {
-  @PrimaryColumn({ unique: true })
+  @PrimaryGeneratedColumn("uuid")
+  id!: string;
+
+  @Column({ unique: true })
   label!: string;
 
   @Column()

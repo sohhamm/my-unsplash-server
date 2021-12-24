@@ -5,7 +5,6 @@ import { Photo } from "../entity/photo.entity";
 export const getAllPhotos = async (_req: Request, res: Response) => {
   try {
     const photos = await Photo.find();
-
     switch (true) {
       case !photos.length:
         return res.json(items);
@@ -22,20 +21,15 @@ export const getAllPhotos = async (_req: Request, res: Response) => {
 export const addPhoto = async (req: Request, res: Response) => {
   try {
     const { label, url } = req.body;
-    console.log(label, url);
-
     if (!label) {
       res.status(400).json({ msg: "no label provided" });
     }
     if (!url) {
       res.status(400).json({ msg: "no url provided" });
     }
-
     const photo = new Photo();
-
     photo.label = label;
     photo.url = url;
-
     await photo.save();
     res.json({ status: "success", data: photo });
   } catch (err) {
@@ -45,19 +39,16 @@ export const addPhoto = async (req: Request, res: Response) => {
 
 export const deletePhoto = async (req: Request, res: Response) => {
   try {
-    const { label } = req.params;
-    if (!label) {
-      res.status(400).json({ msg: "no label provided to delete photo" });
+    const { id } = req.params;
+    if (!id) {
+      res.status(400).json({ msg: "no id provided to delete photo" });
     }
-
-    const delPhoto = await Photo.findOne({ label });
-
-    console.log(delPhoto);
-
+    const delPhoto = await Photo.findOne({ id });
     if (!delPhoto) {
-      res.status(400).json({ msg: "photo does not exist" });
+      return res.status(400).json({ msg: "photo does not exist" });
     }
-    await delPhoto!.remove();
+    await delPhoto.remove();
+    return res.json({ msg: "successfully deleted" });
   } catch (err) {
     res.status(400).json({ err });
   }
