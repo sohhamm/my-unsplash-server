@@ -2,6 +2,7 @@ import "reflect-metadata";
 import express, { Express } from "express";
 import dotenv from "dotenv";
 import helmet from "helmet";
+import cors from "cors";
 import { photoRoutes } from "./routes/index";
 import { connectDB } from "./db";
 
@@ -17,6 +18,9 @@ app.use(helmet());
 app.use(express.json());
 // to parse url form encoded data in req.body
 app.use(express.urlencoded({ extended: true }));
+
+//cors
+app.use(cors());
 
 // health check route
 app.get("/", (_, res) => {
