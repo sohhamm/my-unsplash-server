@@ -14,7 +14,7 @@ export const connectDB = async () => {
     database: "photo_gallery",
     entities: [Photo],
     synchronize: true,
-    ssl: true,
+    ssl: false,
   };
 
   if (process.env.NODE_ENV === "production") {
